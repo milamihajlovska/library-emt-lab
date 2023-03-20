@@ -3,6 +3,7 @@ package mk.finki.ukim.libraryemtlab.controller;
 import mk.finki.ukim.libraryemtlab.model.Book;
 import mk.finki.ukim.libraryemtlab.model.dto.BookDto;
 import mk.finki.ukim.libraryemtlab.service.BookService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,10 @@ public class HomeController {
                 .map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.notFound().build());
 
+    }
+    @GetMapping
+    public List<Book> findAllWithPagination(Pageable pageable) {
+        return this.bookService.findAllBooksByPage(pageable);
     }
 
     @PostMapping("/add")

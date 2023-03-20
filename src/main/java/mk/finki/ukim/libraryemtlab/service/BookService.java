@@ -2,6 +2,7 @@ package mk.finki.ukim.libraryemtlab.service;
 
 import mk.finki.ukim.libraryemtlab.model.Book;
 import mk.finki.ukim.libraryemtlab.model.dto.BookDto;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,4 +18,6 @@ public interface BookService {
 
     void deleteBook(Long id);
     void markBookAsTaken(Long id);
+    List<Book> findAllBooksByPage(Pageable pageable);
+
 }

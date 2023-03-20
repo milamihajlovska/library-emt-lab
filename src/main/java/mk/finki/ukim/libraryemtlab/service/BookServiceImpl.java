@@ -4,6 +4,7 @@ import mk.finki.ukim.libraryemtlab.model.Book;
 import mk.finki.ukim.libraryemtlab.model.dto.BookDto;
 import mk.finki.ukim.libraryemtlab.repository.AuthorRepository;
 import mk.finki.ukim.libraryemtlab.repository.BookRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -61,5 +62,10 @@ public class BookServiceImpl implements BookService {
         Book book=this.bookRepository.findById(id).orElseThrow(()->new RuntimeException());
         book.setAvailableCopies(book.getAvailableCopies()-1);
         bookRepository.save(book);
+    }
+
+    @Override
+    public List<Book> findAllBooksByPage(Pageable pageable) {
+        return bookRepository.findAll(pageable).getContent();
     }
 }
