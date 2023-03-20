@@ -35,7 +35,7 @@ public class HomeController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
 
     }
-    @GetMapping
+    @GetMapping("/page")
     public List<Book> findAllWithPagination(Pageable pageable) {
         return this.bookService.findAllBooksByPage(pageable);
     }
@@ -71,11 +71,11 @@ public class HomeController {
     {
         Optional<Book> book = bookService.findBookById(id);
 
-        if (book == null) {
-            return ResponseEntity.notFound().build();
-        } else {
+        if (book != null) {
             bookService.markBookAsTaken(id);
-            return (ResponseEntity<Book>) ResponseEntity.ok();
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
         }
     }
 }
