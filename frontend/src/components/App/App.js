@@ -1,20 +1,22 @@
 import './App.css';
 import React, {Component} from "react";
 import {BrowserRouter as Router, Routes, Redirect, Route} from "react-router-dom";
-import Books from "../Books/BookList/books";
-import books from "../Books/BookList/books";
+
 import {Navigate} from 'react-router-dom';
 import LibraryService from "../../repository/libraryRepository";
 import Categories from "../Categories/categories";
 import Header from "../Header/header";
+import Authors from "../Authors/authors";
+import Books from "../Books/BookList/books";
 
 class App extends Component
 {
   constructor(props) {
     super(props);
     this.state={
-      books: [],
-      categories: []
+        books: [],
+        categories: [],
+        authors:[]
     }
   }
   render() {
@@ -23,9 +25,13 @@ class App extends Component
           <Header/>
           <main>
               <div className={"container"}>
+
                   <Routes>
-                      <Route path={"/books"} exact render={() => <Books books={this.state.books}/>}/>
-                      <Route path={"/categories"} exact render={() => <Categories categories={this.state.categories}/>}/>
+                      <Route path={"/books"} element={<Books books={this.state.books}/>}/>
+                      {/*<Route path={"/books"} exact render={() => <Books books={this.state.books}/>}/>*/}
+                      <Route path={"/categories"} element={<Categories categories={this.state.categories}/>}/>
+                      <Route path={"/authors"}  element={<Authors authors={this.state.authors}/>}/>
+
                       {/*<Redirect to={"/books"}/>*/}
                   </Routes>
 
@@ -52,11 +58,20 @@ class App extends Component
                 })
             });
     }
+    loadAuthors=()=>{
+        LibraryService.fetchAuthors()
+            .then((data)=> {
+                this.setState({
+                    authors: data.data
+                })
+            });
+    }
 
 
     componentDidMount() {
     this.loadBooks();
     this.loadCategories();
+    this.loadAuthors();
   }
 }
 

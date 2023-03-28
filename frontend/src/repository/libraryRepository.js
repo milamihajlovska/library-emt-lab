@@ -6,10 +6,10 @@ const LibraryService={
     },
     fetchCategories: () => {
         return axios.get("/categories");
+    },
+    fetchAuthors: () => {
+        return axios.get("/authors");
     }
-    // fetchAuthors: () => {
-    //     return axios.get("/authors");
-    // }
 }
 
 export default LibraryService;

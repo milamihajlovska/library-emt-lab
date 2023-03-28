@@ -1,5 +1,4 @@
 import React from "react";
-import BookTerm from "../Books/BookTerm/bookTerm";
 
 const authors = (props) =>{
     return(
@@ -10,7 +9,7 @@ const authors = (props) =>{
                         <thead>
                         <tr>
                             <th scope={"col"}>Name</th>
-                            {/*<th scope={"col"}>Category</th>*/}
+                            <th scope={"col"}>Surname</th>
                             {/*<th scope={"col"}>Author</th>*/}
                             {/*<th scope={"col"}>Copies</th>*/}
                         </tr>
@@ -22,7 +21,7 @@ const authors = (props) =>{
 
                                 <tr>
                                     <td>{term.name}</td>
-                                    {/*<td>{term.availableCopies}</td>*/}
+                                    <td>{term.surname}</td>
 
                                 </tr>
                             );

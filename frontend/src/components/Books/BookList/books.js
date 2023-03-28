@@ -10,9 +10,9 @@ const books = (props) => {
                         <thead>
                         <tr>
                             <th scope={"col"}>Name</th>
-                            {/*<th scope={"col"}>Category</th>*/}
-                            {/*<th scope={"col"}>Author</th>*/}
-                            {/*<th scope={"col"}>Copies</th>*/}
+                            <th scope={"col"}>Category</th>
+                            <th scope={"col"}>Author</th>
+                            <th scope={"col"}>Copies</th>
                         </tr>
 
                         </thead>

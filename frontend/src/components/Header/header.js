@@ -19,9 +19,9 @@ const header = (props) => {
                         <li className="nav-item active">
                             <Link className="nav-link" to={"/categories"}>Categories</Link>
                         </li>
-                        {/*<li className="nav-item active">*/}
-                        {/*    <Link className={"nav-link"} to={"/manufacturers"}>Manufacturers</Link>*/}
-                        {/*</li>*/}
+                        <li className="nav-item active">
+                            <Link className={"nav-link"} to={"/authors"}>Authors</Link>
+                        </li>
                     </ul>
                     {/*<form className="form-inline mt-2 mt-md-0 ml-3">*/}
                     {/*    {authenticate}*/}
