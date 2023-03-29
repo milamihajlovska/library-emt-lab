@@ -57,7 +57,7 @@ public class HomeController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Book> deleteBook(@PathVariable Long id)
+    public ResponseEntity deleteBook(@PathVariable Long id)
     {
         this.bookService.deleteBook(id);
         if(this.bookService.findBookById(id).isEmpty())
@@ -66,7 +66,7 @@ public class HomeController {
     }
 
     @PutMapping("/mark/{id}")
-    public ResponseEntity<Book> markBookAsTaken(@PathVariable Long id)
+    public ResponseEntity markBookAsTaken(@PathVariable Long id)
     {
         Optional<Book> book = bookService.findBookById(id);
 
