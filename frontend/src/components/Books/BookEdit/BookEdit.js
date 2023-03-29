@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 const BookEdit = (props) =>
 {
 
-    const history = useNavigate();
+    const navigate = useNavigate();
     const [formData,updateFormData] = React.useState({
         name: "",
         category: "DRAMA",
@@ -24,10 +24,10 @@ const BookEdit = (props) =>
         e.preventDefault();
         const name=formData.name !== "" ? formData.name : props.book.name;
         const category=formData.category !== "DRAMA" ? formData.category : props.book.category;
-        const author=formData.author !== 1 ? formData.author : props.book.author.id;
+        const author=formData.author !== 1 ? formData.author : props.book.author.authorId;
         const availableCopies=formData.availableCopies !== 0 ? formData.availableCopies : props.book.availableCopies;
-        props.onEditBook(props.book.id,name,category,author,availableCopies);
-        history("/books");
+        props.onEditBook(props.book.bookId,name,category,author,availableCopies);
+        navigate("/books");
     }
 
     return(
@@ -52,9 +52,9 @@ const BookEdit = (props) =>
                     <select name="category" className="form-control" onChange={handleChange}>
                         {props.categories.map((term) =>
                             {
-                                if(props.category !== undefined &&
+                                if(props.book.category !== undefined &&
                                     props.book.category === term)
-                                    return <option selected={props.category}
+                                    return <option selected={props.book.category}
                                                    value={term}>{term}</option>
                                 else
                                     return  <option value={term}>{term}</option>
@@ -65,14 +65,14 @@ const BookEdit = (props) =>
                 </div>
                 <div className="form-group">
                     <label>Author</label>
-                    <select name="authors" className="form-control" onChange={handleChange}>
+                    <select name="author" className="form-control" onChange={handleChange}>
                         {props.authors.map((term) =>{
                                 if(props.book.author !== undefined &&
-                                props.book.author.id === term.id)
-                                    return <option selected={props.book.author.id}
-                                                   value={term.id}>{term.name}</option>
+                                props.book.author.authorId === term.authorId)
+                                    return <option selected={props.book.author.authorId}
+                                                   value={term.authorId}>{term.name}</option>
                             else
-                                return  <option value={term.id}>{term.name}</option>
+                                return  <option value={term.authorId}>{term.name}</option>
 
                             }
                         )}

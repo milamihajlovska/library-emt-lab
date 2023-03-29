@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 
 const BookAdd = (props) => {
 
-    const history = useNavigate();
+    const navigate = useNavigate();
     const [formData,updateFormData] = React.useState({
         name: "",
         category: "DRAMA",
@@ -25,7 +25,7 @@ const BookAdd = (props) => {
         const author=formData.author;
         const availableCopies=formData.availableCopies;
         props.onAddBook(name,category,author,availableCopies);
-        history("/books");
+        navigate("/books");
     }
     return(
 
@@ -55,9 +55,10 @@ const BookAdd = (props) => {
                     </div>
                     <div className="form-group">
                         <label>Author</label>
-                        <select name="authors" className="form-control" onChange={handleChange}>
-                            {props.authors.map((term) =>
-                                <option value={term.id}>{term.name}</option>
+                        <select name="author" className="form-control" onChange={handleChange}>
+                            {
+                                props.authors.map((term) =>
+                                <option value={term.authorId}>{term.name}</option>
                             )}
                         </select>
                     </div>

@@ -10,6 +10,7 @@ const authors = (props) =>{
                         <tr>
                             <th scope={"col"}>Name</th>
                             <th scope={"col"}>Surname</th>
+                            {/*<th scope={"col"}>id</th>*/}
                             {/*<th scope={"col"}>Author</th>*/}
                             {/*<th scope={"col"}>Copies</th>*/}
                         </tr>
@@ -22,6 +23,7 @@ const authors = (props) =>{
                                 <tr>
                                     <td>{term.name}</td>
                                     <td>{term.surname}</td>
+                                    <td>{term.id}</td>
 
                                 </tr>
                             );

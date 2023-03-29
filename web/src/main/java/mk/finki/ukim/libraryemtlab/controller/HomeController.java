@@ -29,6 +29,7 @@ public class HomeController {
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id)
     {
+        System.out.println(id);
         return this.bookService.findBookById(id)
                 .map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -50,6 +51,7 @@ public class HomeController {
     @PutMapping("/edit/{id}")
     public ResponseEntity<Book> editBook(@PathVariable Long id,@RequestBody BookDto bookDto)
     {
+        System.out.println(id);
         return this.bookService.editBook(id,bookDto)
                 .map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.badRequest().build());

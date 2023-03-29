@@ -9,7 +9,7 @@ class Books extends React.Component{
 
         this.state={
             page: 0,
-            size: 2
+            size: 5
         }
     }
 
@@ -31,6 +31,7 @@ class Books extends React.Component{
                                 <th scope={"col"}>Category</th>
                                 <th scope={"col"}>Author</th>
                                 <th scope={"col"}>Copies</th>
+                                {/*<th scope={"col"}>id</th>*/}
                             </tr>
 
                             </thead>

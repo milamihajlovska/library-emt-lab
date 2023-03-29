@@ -32,19 +32,19 @@ public class BookServiceImpl implements BookService {
     @Override
     public Optional<Book> addBook(BookDto bookDto) {
 
-        Book book=new Book();
-        book.setAuthor(this.authorRepository.findById(bookDto.getAuthor()).orElseThrow(()->new RuntimeException()));
-        book.setName(bookDto.getName());
-        book.setCategory(bookDto.getCategory());
-        book.setAvailableCopies(bookDto.getAvailableCopies());
-        return Optional.of(this.bookRepository.save(book));
+//        Book book=new Book();
+//        book.setAuthor(this.authorRepository.findById(bookDto.getAuthor()).get());
+//        book.setName(bookDto.getName());
+//        book.setCategory(bookDto.getCategory());
+//        book.setAvailableCopies(bookDto.getAvailableCopies());
+        return Optional.of(this.bookRepository.save(new Book(bookDto.getName(),bookDto.getCategory(),this.authorRepository.findById(bookDto.getAuthor()).get(),bookDto.getAvailableCopies())));
 
     }
 
     @Override
     public Optional<Book> editBook(Long id, BookDto bookDto) {
-        Book book=this.bookRepository.findById(id).orElseThrow(()->new RuntimeException());
-        book.setAuthor(this.authorRepository.findById(bookDto.getAuthor()).orElseThrow(()->new RuntimeException()));
+        Book book=this.bookRepository.findById(id).get();
+        book.setAuthor(this.authorRepository.findById(bookDto.getAuthor()).get());
         book.setName(bookDto.getName());
         book.setCategory(bookDto.getCategory());
         book.setAvailableCopies(bookDto.getAvailableCopies());
@@ -59,7 +59,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void markBookAsTaken(Long id) {
-        Book book=this.bookRepository.findById(id).orElseThrow(()->new RuntimeException());
+        Book book=this.bookRepository.findById(id).get();
         book.setAvailableCopies(book.getAvailableCopies()-1);
         bookRepository.save(book);
     }
